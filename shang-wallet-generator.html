@@ -94,7 +94,7 @@
 -->
 
 <head>
-  <title>Monero offline wallet generator</title>
+  <title>Shang offline wallet generator</title>
   <meta charset="UTF-8">
     <style type="text/css">
         html {
@@ -8559,6 +8559,13 @@ var sumokoinConfig = {
     coinUriPrefix: 'sumo:',
     addressPrefix: 0x2bb39a
 };
+var shangConfig = {
+    coinUnitPlaces: 8,
+    coinSymbol: 'SHG',
+    coinName: 'Shang',
+    coinUriPrefix: 'shang:',
+    addressPrefix: 0xf17
+};
 
 var cnUtilGen = function(initConfig) {
     //var config = $.extend({}, initConfig);
@@ -8982,7 +8989,7 @@ var cnUtilGen = function(initConfig) {
 
     return this;
 };
-var cnUtil = cnUtilGen(sumokoinConfig);
+var cnUtil = cnUtilGen(shangConfig);
 /*
  mnemonic.js : Converts between 4-byte aligned strings and a human-readable
  sequence of words. Uses 1626 common words taken from wikipedia article:
@@ -9034,7 +9041,7 @@ function mn_encode(str, wordset_name, coin_name) {
     }
     
     if(coin_name == "sumokoin"){
-        out.push(wordset.words[mn_get_checksum_index2(out, wordset)]);
+        out.push(wordset.words[mn_get_checksum_index(out, wordset)]);
     }
     
     return out.join(' ');
@@ -10684,7 +10691,7 @@ html { font-family: sans-serif }
 <nav class="grey lighten-3">
     <div class="nav-wrapper">
         <a href="#" class="brand-logo center">
-            <img style="height:60px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAScAAAA8CAMAAAAT4oyfAAAAA3NCSVQICAjb4U/gAAADAFBMVEX////////Efje2fkWpbjJ1TSU8JhAoGgsAAAD////roFbolUDaj0PbjDyaYywBAgkAAAD////RhzvLhT/Efjc8JhAAAAD///+aYyxaOhtGLBQBAgn////0nUXsmkfnlEG2dTSzdDOIVyYkHhgoGgsRDAYKCAb////yn0rwmkTsmkfnlkTXiDjRhzuzdDOwcjOpbjKNWyiIVyZENig5NC9GLBQkHhj////smkf////nlkS2dTSwcjOLWyuNWyh1TSVeSjf////4n0f0nUXsmkfnlkTnlEF/XDh1TSX////olUCpbjKaYyz////6okj8oUXikT7bjDzRhzvLhT/EfjewcjOqcDepbjKhbjv/////okT4okv4n0f0nUXwmkSwfEa1dzqpbjL////0nUXolUCwfEb////6okj0nUXymD3////9/Pv/+/f9+fX89/P89u779O368+z78eb+8eP/79/67+L97Nv469356Nf648325NH748v24Mn83sD03sf/3Lf23ML02Lz417X/1qz91Kv+0qbx07Txz6z/zJn8zZ/yzKb2yp//xo76x5TsyKX9w4r8wobvxZrwwpT7wIX0wYz7v4L2vof6vH37unj2u3/uvY3zu4T3uXrtuof+t2/3tnT3tnntuIP3tXL8s2r3s3DutHr9sWXzsW70sGz/rln8r2HwsG/0rmbyrmrnr3j8qlfzqmLwq2b/qVHmrXPnq27wqWH/pUj9pU3up17qp2Tzpljnp2j/okTwpVnhp2z6okj/oTz+oEH8oUXuolb/njz4n0f7n0Dvn1DnoVvroFbyn0r2nUH/nDj0nUXioF3snk/pnlPwmkTnm07smkfam1znlkTolUDilknallPnlEHokz7okTnkkkDikT7njTPaj0PbjDzgjDflii3gizXkiS7hiC7khijXiDjghCfjgyTahS/ggiThgSDXgy7cgSTffx7ffRnefRzXfiTRfyzYfB/eeRTbehjSeiLddg/XdxjSeB7TdRbbcAXbbwPabADLbxN0Vh8RAAABAHRSTlMAEREREREREREiIiIiIiIiIjMzMzMzM0REREREVVVVVVVVVVVVVVVmZmZmZmZmZmZmZmZmZmZmd3eIiIiIiIiIiJmZmZmZmZmZqqqqqru7u7u7u7u7u7u7u8zMzMzMzMzMzN3d3d3u7u7u////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////cd8Q/wAAAAlwSFlzAAAK6wAACusBgosNWgAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDIvMjMvMTdmSK4lAAALQElEQVR4nO2ae1gU1xXAd/vM9JG66WOTdtN3uk0f2kfazfa9faWTdtM2faRr27TdJKuZ5SGgAgYUVPCBBLCui2YVRSAoRAEjoi66yDaQaIKBCIqCBJWAri4aiWhQM7O7M/fce2eWddP0j35zPr6P77tz955zf3PuueeeOxqNKqqooooqqqiiiiqqqKLKf1fef/vnpk6bOu3zH38HxtbqDCazif8zMFq8XR8RrFkjNTNkPx09OKOP8lCjZfS8bqNBj2tWUESOiLdrNLd+/f6HH/cfPHjQ//ijv//+Hbco2qIjGkjTGFqB1sg6OEnsrAn9Ric1m7G52cVma7jBgH5vouZqlZ45iFkJqqWhOLvFSKLSSoaxoFUHzMXm97FfzPR7G9avWLRgUaF7c6P/wIPfJEhZSFPMCnZbKMUmZKkoNtHgODjZybmiMUhOjBlMOPxjM94DKQKcGGCwAXR+78+f8zcUZiYkpc+bn5WRmpi2uMp34I93xMgJJ05x0qK3DcVh0sbJiTMSnFgFTlqKUljxZJy0ABPUddvf/Q15CclL6g/3B8bGgsN96zKc2VW+7h9Cl4rCCX/BBCetTRYTLzZtnJxsOCYGQgCcdEqarYycIokTtBgy/cp+vyspeeXhwcGhoZGRwOj4xPVrPbnOZd4Df54SEydsaZOc5L1JEIsmTk7YWgAKcU56OWcKi10no0iaBLDYAtTcu79lMbewtbe7u/dYf//g0EggODp+/Xp7SkaD958IVDROGHack1HRWI6Jm5MVdmUgD8QpCiYIiuYEsMP3/+n93mznqhfa2jq6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">
+            
         </a>
 
     </div>
@@ -10693,7 +10700,7 @@ html { font-family: sans-serif }
 <div class="row">&nbsp;</div>
 <div class="row center-align">
     <div class="col s12">
-        <h4 style="color: #555;">Offline wallet generator</h4>
+        <h4 style="color: #555;">Shang Offline wallet generator</h4>
     </div>
 </div>
 
@@ -10703,6 +10710,7 @@ html { font-family: sans-serif }
             <p>
                 This page generates a new
                 <select onchange="js:setCoin(this.selectedIndex);" class="waves-effect waves-light btn" style="max-width: 20%">
+                  <option>Shang</option>
                   <option>Sumokoin</option>
                   <option>Monero</option>
                   <option>Aeon</option>
@@ -10710,9 +10718,9 @@ html { font-family: sans-serif }
                 wallet. It is self contained and
                 does all the necessary calculations locally, so is suitable for generating a new wallet on a machine
                 that is not connected to the network, and may even never be. This way, you can create
-                a Sumokoin, Monero or Aeon wallet without risking the keys. This file is GPG signed, see <a href="#gpg-instructions">GPG instructions</a>.
+                a Shang, Sumokoin, Monero or Aeon wallet without risking the keys. This file is GPG signed, see <a href="#gpg-instructions">GPG instructions</a>.
                 You can check for up to date versions of this page
-                <a href="https://github.com/sumoprojects/sumokoin-wallet-generator/blob/master/sumokoin-wallet-generator.html">here</a>.
+                <a href="https://github.com/shangproject/shang-wallet-generator/blob/master/shang-wallet-generator.html">here</a>.
             </p>
         </div>
     </div>
@@ -10728,7 +10736,7 @@ html { font-family: sans-serif }
             <form>
                 <input class="btn deep-orange" type="button" onclick="js:genwallet_prefix();" value="Generate wallet with prefix" action="" id="gen_prefix_widget"/>
                 <p>(very slow for more than a few characters)</p>
-                <input type="text" value="Sumo" id="prefix_widget" oninput="js:check_prefix_validity()"; />
+                <input type="text" value="SH" id="prefix_widget" oninput="js:check_prefix_validity()"; />
             </form>
         </div>
     </div>
@@ -10754,7 +10762,7 @@ html { font-family: sans-serif }
                          style="line-height: 25px; height: 25px; font-size: 60%; padding: 0px 1.5rem;"/ id="show_qr_code">
                     </span>
 
-                    <p>This is the address you give to third parties to send SUMO/XMR/AEON to you.
+                    <p>This is the address you give to third parties to send SHG/SUMO/XMR/AEON to you.
                         <br><b>It is the only information here that's meant to be public.</b>
                     </p>
                 </div>
@@ -10771,7 +10779,7 @@ html { font-family: sans-serif }
                 <div class="card-content pink-text text-darken-5">
                     <span class="card-title pink-text text-darken-5">Mnemonic seed</span>
                     <p>
-                        The mnemonic seed is a string that comprises 26 (Sumokoin), 25 (Monero) or 24 (AEON) words and allows you to recreate your
+                        The mnemonic seed is a string that comprises 25 (Shang), 26 (Sumokoin), 25 (Monero) or 24 (AEON) words and allows you to recreate your
                         private keys. <b>Keep it secure!</b>
                     </p>
                 </div>
@@ -10828,7 +10836,7 @@ being passed around. It is in your interest to check the signature.
 </p>
 <p>
 This page is maintained as a
-<a href="https://github.com/sumoprojects/sumokoin-wallet-generator/">git repository</a>.
+<a href="https://github.com/shangprojects/shang-wallet-generator/">git repository</a>.
 All commits are signed. In addition, released versions of the page are signed separately.
 In order to check either, you first need to import
 <a href="https://raw.githubusercontent.com/sumoprojects/sumokoin/master/utils/gpg_keys/sumoshi.asc">sumoshi's GPG key</a>
@@ -10844,12 +10852,12 @@ gpg --import sumoshi.asc
 <p>
 You need to get the signature file corresponding to the version of the page you're using.
 Original signature files are
-<a href="https://raw.githubusercontent.com/sumoprojects/sumokoin-wallet-generator/master/sumokoin-wallet-generator.html.asc">in the git repository</a>
-as well. Save it as sumokoin-wallet-generator.html.asc, then:
+<a href="https://raw.githubusercontent.com/sumoprojects/sumokoin-wallet-generator/master/shang-wallet-generator.html.asc">in the git repository</a>
+as well. Save it as shang-wallet-generator.html.asc, then:
 </p>
 
 <code>
-gpg --verify sumokoin-wallet-generator.html.asc
+gpg --verify shang-wallet-generator.html.asc
 </code>
 
 <p>
@@ -10953,7 +10961,13 @@ function genwallet(lang)
   
   // only monero and sumokoin has the URI scheme
   wallet_prefix = String(prefix_widget.value);
-  if(wallet_prefix.startsWith("Sumo")){
+  
+  if(wallet_prefix.startsWith("SH")){
+    mnemonic_widget.innerHTML = mn_encode(seed,current_lang, "shang");
+    qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
+    qr.makeCode("shang:"+keys.public_addr);
+  }
+  else if(wallet_prefix.startsWith("Sumo")){
     mnemonic_widget.innerHTML = mn_encode(seed,current_lang, "sumokoin");
 	qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
     qr.makeCode("sumo:"+keys.public_addr);
@@ -11006,7 +11020,6 @@ function genwallet_prefix_worker()
   address_widget.innerHTML = keys.public_addr;
   address_qr_widget.innerHTML = "";
   
-  // only monero and sumokoin has the URI scheme
   wallet_prefix = String(prefix_widget.value);
   if (wallet_prefix.startsWith("4")) {
     mnemonic_widget.innerHTML = mn_encode(seed,current_lang, "monero");
@@ -11017,6 +11030,11 @@ function genwallet_prefix_worker()
     mnemonic_widget.innerHTML = mn_encode(seed,current_lang, "sumokoin");
 	qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
     qr.makeCode("sumo:"+keys.public_addr);
+  }
+  else if(wallet_prefix.startsWith("SH")){
+    mnemonic_widget.innerHTML = mn_encode(seed,current_lang, "shang");
+    qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
+    qr.makeCode("shang:"+keys.public_addr);
   }
   else if(wallet_prefix.startsWith("W")) {
     mnemonic_widget.innerHTML = mn_encode(seed,current_lang, "aeon");
@@ -11135,18 +11153,24 @@ function setCoin(index)
   var language
   prefix_widget = document.getElementById("prefix_widget");
   if (index == 0) {
+    cnUtil = cnUtilGen(shangConfig);
+    prefix_widget.value = "SH";
+    enable = true
+    language = "english"
+  }
+  else if (index == 1) {
     cnUtil = cnUtilGen(sumokoinConfig);
     prefix_widget.value = "Sumo";
     enable = true
     language = "english"
   }
-  else if (index == 1) {
+  else if (index == 2) {
     cnUtil = cnUtilGen(moneroConfig);
     prefix_widget.value = "4";
     enable = true
     language = "english"
   }
-  else if (index == 2) {
+  else if (index == 3) {
     cnUtil = cnUtilGen(aeonConfig);
     prefix_widget.value = "W";
     enable = false
